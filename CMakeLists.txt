@@ -3,18 +3,18 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 if ("${CMAKE_SYSTEM_NAME}" STREQUAL "iOS" OR IOS)
     set(CMAKE_OSX_ARCHITECTURES "arm64")
-
-    target_link_libraries(${PROJECT_NAME} PRIVATE
-        "-framework QuartzCore"
-        "-framework UIKit"
-        "-framework Foundation"
-    )
 else()
     set(CMAKE_OSX_ARCHITECTURES "arm64;x86_64")
 endif()
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 project(iOS120Hz VERSION 1.0.0)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    "-framework QuartzCore"
+    "-framework UIKit"
+    "-framework Foundation"
+)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
