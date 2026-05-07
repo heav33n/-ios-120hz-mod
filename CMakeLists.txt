@@ -12,12 +12,6 @@ project(iOS120Hz VERSION 1.0.0)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
-target_link_libraries(${PROJECT_NAME} PRIVATE
-    "-framework QuartzCore"
-    "-framework UIKit"
-    "-framework Foundation"
-)
-
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
 else()
@@ -26,7 +20,15 @@ endif()
 
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE Geode::Geode)
+target_link_libraries(${PROJECT_NAME}
+    "-framework QuartzCore"
+    "-framework UIKit"
+    "-framework Foundation"
+)
+
+target_link_libraries(${PROJECT_NAME}
+    Geode::Geode
+)
 
 # Create Geode mod
 setup_geode_mod(${PROJECT_NAME})
