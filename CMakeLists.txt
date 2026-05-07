@@ -20,14 +20,10 @@ endif()
 
 add_subdirectory($ENV{GEODE_SDK} ${CMAKE_CURRENT_BINARY_DIR}/geode)
 
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(${PROJECT_NAME} PRIVATE
     "-framework QuartzCore"
     "-framework UIKit"
     "-framework Foundation"
-)
-
-target_link_libraries(${PROJECT_NAME}
-    Geode::Geode
 )
 
 # Create Geode mod
