@@ -12,6 +12,10 @@ project(iOS120Hz VERSION 1.0.0)
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND codesign -f -s - $<TARGET_FILE:${PROJECT_NAME}>
+)
+
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
 else()
