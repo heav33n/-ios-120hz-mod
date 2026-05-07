@@ -10,13 +10,13 @@ set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
 project(iOS120Hz VERSION 1.0.0)
 
+add_library(${PROJECT_NAME} SHARED ${SOURCES})
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
     "-framework QuartzCore"
     "-framework UIKit"
     "-framework Foundation"
 )
-
-add_library(${PROJECT_NAME} SHARED ${SOURCES})
 
 if (NOT DEFINED ENV{GEODE_SDK})
     message(FATAL_ERROR "Unable to find Geode SDK! Please define GEODE_SDK environment variable to point to Geode")
